@@ -2,10 +2,6 @@ const words = ['Donald Trump', 'Barack Obama', 'Joe Biden', 'Marilyn Monroe', 'A
 let currentWord;
 let shownWords = [];
 
-startGame = () => {
-    countdown();
-}
-
 countdown = () => {
     let i = 3;
     document.getElementById('countdown').innerHTML = i;
@@ -56,6 +52,8 @@ showWord = () => {
 }
 
 next = (correct) => {
+    let audio = new Audio('./ting.mp3');
+    audio.play();
     shownWords.push({"word": currentWord, "correct": correct});
     showWord();
 }
