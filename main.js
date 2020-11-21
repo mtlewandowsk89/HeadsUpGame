@@ -36,8 +36,8 @@ startTimer = () => {
             document.getElementById('timeLeft').innerHTML = '';
             document.getElementById('correct').style.display = 'none';
             document.getElementById('pass').style.display = 'none';
-            // let audio = new Audio('./airHorn.mp3');
-            // audio.play();
+            let audio = new Audio('./airHorn.mp3');
+            audio.play();
             clearInterval(timer);
             document.getElementById('word').innerHTML = '';
             showResults();
