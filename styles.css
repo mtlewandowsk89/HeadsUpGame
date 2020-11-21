@@ -1,0 +1,83 @@
+  #start {
+      height: 100px;
+      width: 200px;
+      margin: 0;
+      position: absolute;
+      top: 38%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      left: 50%;
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+      border: none;
+      font-size: 60px;
+      color: green;
+  }
+
+  #start:focus, #start:active, #correct:focus, #correct:active, #pass:focus, #pass:active, #playAgain:focus, #playAgain:active {
+    outline: none;
+  }
+
+  #countdown, #word {
+    position: absolute;
+    top: 10%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border: none;
+    font-size: 100px;
+  }
+
+  #timeLeft {
+      font-size: 28px;
+  }
+
+  #correct {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100px;
+    width: 200px;
+    font-size: 36px;
+    color: green;
+    border: none;
+    display: none;
+  }
+
+  #pass {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 100px;
+      width: 200px;
+      font-size: 36px;
+      color: red;
+      border: none;
+      display: none;
+  }
+
+  #results {
+      text-align: center;
+      font-size: 24px;
+  }
+
+  .correct {
+      color: green;
+  }
+
+  .incorrect {
+      color: red;
+  }
+
+  #playAgain {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+    width: 200px;
+    font-size: 36px;
+    border: none;
+    display: none;
+  }
