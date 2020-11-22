@@ -77,7 +77,12 @@ showWord = () => {
 }
 
 next = (correct) => {
-    let audio = new Audio('./ting.mp3');
+    let audio;
+    if (correct) {
+        audio = new Audio('./ting.mp3');
+    } else {
+        audio = new Audio('./mirror.mp3');
+    }
     audio.play();
     shownWords.push({"word": currentWord, "correct": correct});
     showWord();
