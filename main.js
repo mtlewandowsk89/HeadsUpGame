@@ -29,13 +29,13 @@ startTimer = () => {
     let timer = setInterval(() => {
         if (i > 1) {
             i--;
-            document.getElementById('timeLeft').innerHTML = `0:${i}`;
+            document.getElementById('timeLeft').innerHTML = i >= 10 ? `0:${i}` : `0:0${i}`;
         } else {
             document.getElementById('timeLeft').innerHTML = '';
             document.getElementById('correct').style.display = 'none';
             document.getElementById('pass').style.display = 'none';
-            // let audio = new Audio('./airHorn.mp3');
-            // audio.play();
+            let audio = new Audio('./airHorn.mp3');
+            audio.play();
             clearInterval(timer);
             document.getElementById('word').innerHTML = '';
             showResults();
@@ -54,8 +54,8 @@ showWord = () => {
 }
 
 next = (correct) => {
-    // let audio = new Audio('./ting.mp3');
-    // audio.play();
+    let audio = new Audio('./ting.mp3');
+    audio.play();
     shownWords.push({"word": currentWord, "correct": correct});
     showWord();
 }
