@@ -6,12 +6,6 @@ let shownWords = [];
 let checkAgain = true;
 
 countdown = () => {
-    if (window.DeviceOrientationEvent) {
-        document.getElementById('testing').innerHTML = 'supported';
-        window.addEventListener("deviceorientation", handleOrientation, true);
-    } else {
-        document.getElementById('testing').innerHTML = 'not supported';
-    }
     let i = 3;
     document.getElementById('countdown').innerHTML = i;
     document.getElementById('start').style.display = 'none';
@@ -23,23 +17,20 @@ countdown = () => {
             document.getElementById('countdown').innerHTML = '';
             startTimer();
             showWord();
-            document.getElementById('correct').style.display = 'inline-block';
-            document.getElementById('pass').style.display = 'inline-block';
             clearInterval(timer);
         }
     }, 1000);
 }
 
 handleOrientation = (event) => {
-    document.getElementById('testing').innerHTML = 'supported ' + event.gamma;
     if (checkAgain) {
-        if (event.gamma === -30) {
+        if (event.gamma <= -50 && event.gamma >= -45) {
             checkAgain = false;
             next(false);
             setTimeout(() => {
                 checkAgain = true;
             }, 2000)
-        } else if (event.gamma === 45) {
+        } else if (event.gamma <= 50 && event.gamma >= 45) {
             checkAgain = false;
             next(true);
             setTimeout(() => {
@@ -50,6 +41,12 @@ handleOrientation = (event) => {
 }
 
 startTimer = () => {
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", handleOrientation, true);
+    } else {
+        document.getElementById('correct').style.display = 'inline-block';
+        document.getElementById('pass').style.display = 'inline-block';
+    }
     let i = 60;
     document.getElementById('timeLeft').innerHTML = '1:00';
     let timer = setInterval(() => {
