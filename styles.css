@@ -1,5 +1,10 @@
+  html {
+      background-color: #146ab5;
+      font-family: 'Oswald', sans-serif;
+  }
+  
   button {
-      background-color: #fff;
+      background-color: #146ab5;
   }
   
   #start {
@@ -15,7 +20,8 @@
       transform: translateX(-50%);
       border: none;
       font-size: 60px;
-      color: green;
+      font-family: 'Oswald', sans-serif;
+      color: #fff;
   }
 
   #start:focus, #start:active, #correct:focus, #correct:active, #pass:focus, #pass:active, #playAgain:focus, #playAgain:active {
@@ -31,10 +37,19 @@
     font-size: 60px;
     width: 100%;
     text-align: center;
+    color: #fff;
   }
 
   #timeLeft {
-      font-size: 20px;
+    position: absolute;
+    top: 40%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    border: none;
+    width: 100%;
+    text-align: center;
+    color: #95b0ca;
+    font-size: 40px;
   }
 
   #correct {
@@ -44,9 +59,10 @@
     height: 100px;
     width: 200px;
     font-size: 24px;
-    color: green;
+    color: #fff;
     border: none;
     display: none;
+    font-family: 'Oswald', sans-serif;
   }
 
   #pass {
@@ -56,18 +72,19 @@
       height: 100px;
       width: 200px;
       font-size: 24px;
-      color: red;
+      color: #fff;
       border: none;
       display: none;
+      font-family: 'Oswald', sans-serif;
   }
 
   #results {
       text-align: center;
-      font-size: 24px;
+      font-size: 18px;
   }
 
   .correct {
-      color: green;
+      color: #fff;
   }
 
   .incorrect {
@@ -80,7 +97,8 @@
     left: 0;
     height: 100px;
     width: 200px;
-    font-size: 36px;
+    font-size: 24px;
     border: none;
     display: none;
+    color: #fff;
   }
