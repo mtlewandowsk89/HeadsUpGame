@@ -24,13 +24,13 @@ countdown = () => {
 
 handleOrientation = (event) => {
     if (checkAgain) {
-        if (event.gamma <= -50 && event.gamma >= -45) {
+        if (event.gamma >= -50 && event.gamma <= -40) {
             checkAgain = false;
             next(false);
             setTimeout(() => {
                 checkAgain = true;
             }, 2000)
-        } else if (event.gamma <= 50 && event.gamma >= 45) {
+        } else if (event.gamma <= 50 && event.gamma >= 40) {
             checkAgain = false;
             next(true);
             setTimeout(() => {
