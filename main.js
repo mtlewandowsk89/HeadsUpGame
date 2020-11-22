@@ -3,8 +3,12 @@ const words = ['Donald Trump', 'Barack Obama', 'Joe Biden', 'Marilyn Monroe', 'A
 'cat', 'dog', 'horse', 'llama', 'chicken', 'goat', 'rooster', 'turkey', 'mouse', 'rat', 'gerbil', 'hamster', 'guinea pig', 'chinchilla', 'lamb', 'cow', 'zebra', 'ox', 'giraffe', 'gecko', 'snake', 'chameleon', 'toad', 'frog', 'bat', 'pigeon', 'eagle', 'hawk', 'wasp', 'bee', 'beetle', 'ant', 'ladybug', 'caterpillar', 'worm', 'butterfly', 'mosquito', 'flea', 'praying mantis', 'stick bug', 'slug', 'snail', 'albatross', 'seagull', 'dove', 'crane', 'flamingo', 'pelican', 'stork', 'ostrich', 'emu', 'turtle', 'tortoise', 'plankton', 'dolphin', 'whale', 'shark', 'seal', 'squid', 'octopus', 'crab', 'lobster', 'tiger', 'wolf', 'bear', 'lion', 'leopard', 'cheetah', 'jaguar', 'elephant', 'skunk', 'anteater', 'hippopotamus', 'alligator', 'crocodile', 'walrus', 'stingray', 'starfish', 'seahorse', 'weasel', 'orangutan', 'gorilla', 'baboon', 'fox', 'hummingbird', 'woodpecker', 'coyote', 'javelina', 'scorpion', 'tarantula', 'rhino', 'cockroach', 'cricket', 'bull'];
 let currentWord;
 let shownWords = [];
+let checkAgain = true;
 
 countdown = () => {
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", handleOrientation, true);
+    }
     let i = 3;
     document.getElementById('countdown').innerHTML = i;
     document.getElementById('start').style.display = 'none';
@@ -21,6 +25,24 @@ countdown = () => {
             clearInterval(timer);
         }
     }, 1000);
+}
+
+handleOrientation = (event) => {
+    if (checkAgain) {
+        if (event.gamma > 90) {
+            checkAgain = false;
+            next(false);
+            setTimeout(() => {
+                checkAgain = true;
+            }, 2000)
+        } else if (event.gamma < - 90) {
+            checkAgain = false;
+            next(true);
+            setTimeout(() => {
+                checkAgain = true;
+            }, 2000);
+        }
+    }
 }
 
 startTimer = () => {
