@@ -33,13 +33,13 @@ countdown = () => {
 handleOrientation = (event) => {
     document.getElementById('testing').innerHTML = 'supported ' + event.gamma;
     if (checkAgain) {
-        if (event.gamma > 90) {
+        if (event.gamma === -30) {
             checkAgain = false;
             next(false);
             setTimeout(() => {
                 checkAgain = true;
             }, 2000)
-        } else if (event.gamma < - 90) {
+        } else if (event.gamma === 45) {
             checkAgain = false;
             next(true);
             setTimeout(() => {
