@@ -7,7 +7,10 @@ let checkAgain = true;
 
 countdown = () => {
     if (window.DeviceOrientationEvent) {
+        document.getElementById('testing').innerHTML = 'supported';
         window.addEventListener("deviceorientation", handleOrientation, true);
+    } else {
+        document.getElementById('testing').innerHTML = 'not supported';
     }
     let i = 3;
     document.getElementById('countdown').innerHTML = i;
@@ -28,6 +31,7 @@ countdown = () => {
 }
 
 handleOrientation = (event) => {
+    document.getElementById('testing').innerHTML = 'supported ' + event.gamma;
     if (checkAgain) {
         if (event.gamma > 90) {
             checkAgain = false;
