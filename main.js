@@ -1,5 +1,5 @@
 const words = ['Donald Trump', 'Barack Obama', 'Joe Biden', 'Marilyn Monroe', 'Abraham Lincoln', 'Angelina Jolie', 'Kim Kardashian', 'Taylor Swift', 'Steven Spielberg', 'Oprah Winfrey', 'Tom Hanks', 'Brad Pitt', 'Elvis Presley', 'Bill Clinton', 'Tom Cruise', 'George Clooney', 'Katy Perry', 'John F. Kennedy', 'Princess Diana', 'Will Smith', 'Shaun T', 'Jennifer Aniston', 'David Beckham', 'Justin Bieber', 'Jay-Z', 'Miley Cyrus', 'Ben Affleck', 'Julia Roberts', 'Rihanna', 'Johnny Depp', 'Adele', 'Leonardo DiCaprio', 'Britney Spears', 'Adam Sandler', 'Serena Williams', 'Drake', 'Michael Jordan', 'Hillary Clinton', 'Alfred Hitchcock', 'Tiger Woods', 'Al Gore', 'Paris Hilton', 'Cameron Diaz', 'Matt Damon', 'Bruce Willis', 'Chris Pratt', 'David Letterman', 'Jake Gyllenhaal', 'Steve Buscemi', 'Nicole Kidman',
-'taco', 'fajita', 'quesadilla', 'nachos', 'hamburger', 'french fries', 'hot dog', 'spaghetti', 'onion rings', 'lasagna', 'pizza', 'ravioli', 'grapes', 'apple', 'pear', 'orange', 'watermelon', 'kiwi', 'cheese', 'pineapple', 'broccoli', 'cauliflower', 'spinach', 'potato', 'pudding', 'yogurt', 'jell-o', 'cereal', 'milk', 'soda', 'water', 'beer', 'wine', 'tequila', 'vodka', 'rum', 'whiskey', 'gin', 'limoncello', 'brandy', 'scotch', 'mead', 'eggs', 'tofu', 'pepperoni', 'steak', 'chicken', 'pork', 'tuna', 'salmon', 'shrimp', 'catfish', 'smoothie', 'salad', 'tomato', 'lettuce', 'ketchup', 'bbq sauce', 'ranch', '1000 island', 'teriyaki', 'mustard', 'mushroom', 'bell pepper', 'onion', 'tortillas', 'banana', 'honeydew melon', 'dragonfruit', 'ramen', 'fried rice', 'pad thai', 'sub sandwich', 'gyro', 'olive', 'ice cream', 'lollipop', 'hot fudge', 'sprinkles', 'caramel', 'chocolate', 'cinnamon', 'pie', 'cookies', 'lemon', 'lime', 'grapefruit',
+'taco', 'fajitas', 'quesadilla', 'nachos', 'hamburger', 'french fries', 'hot dog', 'spaghetti', 'onion rings', 'lasagna', 'pizza', 'ravioli', 'grapes', 'apple', 'pear', 'orange', 'watermelon', 'kiwi', 'cheese', 'pineapple', 'broccoli', 'cauliflower', 'spinach', 'potato', 'pudding', 'yogurt', 'jell-o', 'cereal', 'milk', 'soda', 'water', 'beer', 'wine', 'tequila', 'vodka', 'rum', 'whiskey', 'gin', 'limoncello', 'brandy', 'scotch', 'mead', 'eggs', 'tofu', 'pepperoni', 'steak', 'chicken', 'pork', 'tuna', 'salmon', 'shrimp', 'catfish', 'smoothie', 'salad', 'tomato', 'lettuce', 'ketchup', 'bbq sauce', 'ranch', '1000 island', 'teriyaki', 'mustard', 'mushroom', 'bell pepper', 'onion', 'tortillas', 'banana', 'honeydew melon', 'dragonfruit', 'ramen', 'fried rice', 'pad thai', 'sub sandwich', 'gyro', 'olive', 'ice cream', 'lollipop', 'hot fudge', 'sprinkles', 'caramel', 'chocolate', 'cinnamon', 'pie', 'cookies', 'lemon', 'lime', 'grapefruit',
 'cat', 'dog', 'horse', 'llama', 'chicken', 'goat', 'rooster', 'turkey', 'mouse', 'rat', 'gerbil', 'hamster', 'guinea pig', 'chinchilla', 'lamb', 'cow', 'zebra', 'ox', 'giraffe', 'gecko', 'snake', 'chameleon', 'toad', 'frog', 'bat', 'pigeon', 'eagle', 'hawk', 'wasp', 'bee', 'beetle', 'ant', 'ladybug', 'caterpillar', 'worm', 'butterfly', 'mosquito', 'flea', 'praying mantis', 'stick bug', 'slug', 'snail', 'albatross', 'seagull', 'dove', 'crane', 'flamingo', 'pelican', 'stork', 'ostrich', 'emu', 'turtle', 'tortoise', 'plankton', 'dolphin', 'whale', 'shark', 'seal', 'squid', 'octopus', 'crab', 'lobster', 'tiger', 'wolf', 'bear', 'lion', 'leopard', 'cheetah', 'jaguar', 'elephant', 'skunk', 'anteater', 'hippopotamus', 'alligator', 'crocodile', 'walrus', 'stingray', 'starfish', 'seahorse', 'weasel', 'orangutan', 'gorilla', 'baboon', 'fox', 'hummingbird', 'woodpecker', 'coyote', 'javelina', 'scorpion', 'tarantula', 'rhino', 'cockroach', 'cricket', 'bull'];
 let currentWord;
 let shownWords = [];
@@ -24,7 +24,9 @@ countdown = () => {
 
 handleOrientation = (event) => {
     if (checkAgain) {
+        document.getElementById('testing').innerHTML = event.gamma;
         if (event.gamma >= -50 && event.gamma <= -40) {
+            document.getElementById('testing').innerHTML = 'this fired';
             checkAgain = false;
             next(false);
             setTimeout(() => {
@@ -63,9 +65,7 @@ startTimer = () => {
 
 addOrientationEvent = () => {
     if (window.DeviceOrientationEvent) {
-        window.addEventListener("deviceorientation", function() {
-            handleOrientation();
-        }, false);
+        window.addEventListener("deviceorientation", handleOrientation, false);
     } else {
         document.getElementById('correct').style.display = 'inline-block';
         document.getElementById('pass').style.display = 'inline-block';
