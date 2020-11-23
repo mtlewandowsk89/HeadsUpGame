@@ -41,12 +41,7 @@ handleOrientation = (event) => {
 }
 
 startTimer = () => {
-    if (window.DeviceOrientationEvent) {
-        window.addEventListener("deviceorientation", handleOrientation, false);
-    } else {
-        document.getElementById('correct').style.display = 'inline-block';
-        document.getElementById('pass').style.display = 'inline-block';
-    }
+    addOrientationEvent();
     let i = 60;
     document.getElementById('timeLeft').innerHTML = '1:00';
     let timer = setInterval(() => {
@@ -57,14 +52,23 @@ startTimer = () => {
             document.getElementById('timeLeft').innerHTML = '';
             document.getElementById('correct').style.display = 'none';
             document.getElementById('pass').style.display = 'none';
-            if (window.DeviceOrientationEvent) {
-                window.removeEventListener("deviceorientation", handleOrientation, false);
-            }
             let audio = new Audio('./airHorn.mp3');
             audio.play();
             clearInterval(timer);
             document.getElementById('word').innerHTML = '';
             showResults();
+        }
+    }, 1000);
+}
+
+addOrientationEvent = () => {
+    setTimeout(() => {
+        if (window.DeviceOrientationEvent) {
+            console.log('added');
+            window.addEventListener("deviceorientation", handleOrientation, false);
+        } else {
+            document.getElementById('correct').style.display = 'inline-block';
+            document.getElementById('pass').style.display = 'inline-block';
         }
     }, 1000);
 }
@@ -92,6 +96,9 @@ next = (correct) => {
 }
 
 showResults = () => {
+    if (window.DeviceOrientationEvent) {
+        window.removeEventListener("deviceorientation", handleOrientation, false);
+    }
     shownWords.forEach((item) => {
         let e = document.createElement('div');
         e.innerHTML = item.word;
