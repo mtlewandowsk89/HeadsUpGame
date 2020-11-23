@@ -4,6 +4,7 @@ const words = ['Donald Trump', 'Barack Obama', 'Joe Biden', 'Marilyn Monroe', 'A
 let currentWord;
 let shownWords = [];
 let checkAgain = true;
+let orientationSet = false;
 
 countdown = () => {
     let i = 3;
@@ -23,10 +24,8 @@ countdown = () => {
 }
 
 handleOrientation = (event) => {
-    if (checkAgain) {
-        document.getElementById('testing').innerHTML = event.gamma;
+    if (checkAgain && orientationSet) {
         if (event.gamma >= -50 && event.gamma <= -40) {
-            document.getElementById('testing').innerHTML = 'this fired';
             checkAgain = false;
             next(false);
             setTimeout(() => {
@@ -66,6 +65,9 @@ startTimer = () => {
 addOrientationEvent = () => {
     if (window.DeviceOrientationEvent) {
         window.addEventListener("deviceorientation", handleOrientation, false);
+        setTimeout(() => {
+            orientationSet = true;
+        }, 2000);
     } else {
         document.getElementById('correct').style.display = 'inline-block';
         document.getElementById('pass').style.display = 'inline-block';
