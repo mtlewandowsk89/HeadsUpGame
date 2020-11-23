@@ -62,15 +62,14 @@ startTimer = () => {
 }
 
 addOrientationEvent = () => {
-    setTimeout(() => {
-        if (window.DeviceOrientationEvent) {
-            console.log('added');
-            window.addEventListener("deviceorientation", handleOrientation, false);
-        } else {
-            document.getElementById('correct').style.display = 'inline-block';
-            document.getElementById('pass').style.display = 'inline-block';
-        }
-    }, 1000);
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", function() {
+            handleOrientation();
+        }, false);
+    } else {
+        document.getElementById('correct').style.display = 'inline-block';
+        document.getElementById('pass').style.display = 'inline-block';
+    }
 }
 
 showWord = () => {
