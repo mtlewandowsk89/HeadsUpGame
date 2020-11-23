@@ -42,7 +42,7 @@ handleOrientation = (event) => {
 
 startTimer = () => {
     if (window.DeviceOrientationEvent) {
-        window.addEventListener("deviceorientation", handleOrientation, true);
+        window.addEventListener("deviceorientation", handleOrientation, false);
     } else {
         document.getElementById('correct').style.display = 'inline-block';
         document.getElementById('pass').style.display = 'inline-block';
@@ -57,6 +57,9 @@ startTimer = () => {
             document.getElementById('timeLeft').innerHTML = '';
             document.getElementById('correct').style.display = 'none';
             document.getElementById('pass').style.display = 'none';
+            if (window.DeviceOrientationEvent) {
+                window.removeEventListener("deviceorientation", handleOrientation, false);
+            }
             let audio = new Audio('./airHorn.mp3');
             audio.play();
             clearInterval(timer);
