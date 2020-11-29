@@ -6,7 +6,10 @@ const words = ['Donald Trump', 'Barack Obama', 'Joe Biden', 'Marilyn Monroe', 'A
 'Grand Canyon', 'Mount Rushmore', 'Great Wall of China', 'Niagara Falls', 'Angel Falls', 'Eiffel Tower', 'Louvre Museum', 'Golden Gate Bridge', 'Colosseum', 'Machu Picchu', 'Statue of Liberty', 'Times Square', 'Taj Mahal', 'Central Park', 'La Sagrada Familia', 'Stonehenge', 'Buckingham Palace', 'Sistine Chapel', 'Alcatraz', 'Notre-Dame', 'Acropolis', 'Pike Place Market', 'Big Ben', 'Yellowstone', 'Yosemite', 'Navy Pier', 'Sydney Opera House', 'Empire State Building', 'Tower of London', 'Pompeii', 'Pantheon', 'Leaning Tower of Pisa', 'Roman Forum', 'La Rambla', 'Zion', 'White House', 'Monument Valley', 'Hoover Dam', 'Space Needle', 'Old Faithful', 'Millenium Park', 'Great Pyramid of Giza', 'Chacchoben', 'Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto',
 'helicopter', 'train', 'bus', 'airplane', 'taxicab', 'ferry', 'trolley', 'monorail', 'subway', 'rickshaw', 'horseback', 'motorcycle', 'bicycle', 'unicycle', 'tricycle', 'dirt bike', 'ATV', 'blimp', 'hot air balloon', 'zipline', 'rowboat', 'canoe', 'speedboat', 'sailboat', 'raft', 'dinghy', 'kayak', 'paddleboard', 'cruise ship', 'jetpack', 'space shuttle', 'rocket', 'submarine', 'Toyota', 'Honda', 'Kia', 'Hyundai', 'Jeep', 'Hummer', 'Chrysler', 'Dodge', 'Ford', 'Chevrolet', 'Maserati', 'Subaru', 'Tesla', 'Range Rover', 'Mercedes', 'Lexus', 'Acura', 'GMC', 'Cadillac', 'Buick', 'Pontiac', 'Scion', 'Audi', 'Ferrari', 'Lamborghini', 'Nissan', 'Mazda', 'Mitsubishi', 'Infiniti', 'Volvo', 'Volkswagen', 'Jaguar', 'Porsche', 'Suzuki', 'Alfa Romeo', 'Fiat', 'Rolls-Royce', 'McLaren', 'Bentley'];
 let currentWord;
+// words reset each game
 let shownWords = [];
+// words reset only after refresh
+let usedWords = [];
 let checkAgain = true;
 let orientationSet = false;
 
@@ -80,9 +83,13 @@ addOrientationEvent = () => {
 }
 
 showWord = () => {
+    if (usedWords.length === words.length) {
+        // make all words available again.
+        usedWords.length = 0;
+    }
     currentWord = words[Math.floor(Math.random() * words.length)];
-    shownWords.forEach((item) => {
-        if (item.word === currentWord) {
+    usedWords.forEach((word) => {
+        if (word === currentWord) {
             showWord();
         }
     });
@@ -97,6 +104,7 @@ nextWord = (correct) => {
         audio = new Audio('./mirror.mp3');
     }
     audio.play();
+    usedWords.push(currentWord);
     shownWords.push({"word": currentWord, "correct": correct});
     showWord();
 }
